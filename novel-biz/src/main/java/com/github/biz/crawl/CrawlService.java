@@ -10,11 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.github.novel.common.constant.XPathFilterTypeEnum;
 import com.github.novel.common.constant.XPathTypeEnum;
-import com.github.novel.common.novel.entity.crawl.*;
 import com.github.novel.common.novel.model.CrawlPageModel;
 import com.github.novel.common.novel.model.XPathModel;
 import com.github.novel.common.novel.model.XPathFilterModel;
 import com.github.novel.dal.mapper.*;
+import com.github.novel.entity.crawl.*;
 
 /**
  * @author:chyl2005

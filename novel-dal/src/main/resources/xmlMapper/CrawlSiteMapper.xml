@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.github.novel.dal.mapper.CrawlSiteMapper">
-    <resultMap id="resultMap" type="com.github.novel.common.novel.entity.crawl.CrawlSiteDO">
+    <resultMap id="resultMap" type="com.github.novel.entity.crawl.CrawlSiteDO">
 
         <id column="id" property="id"/>
         <result column="source_site" property="sourceSite"/>

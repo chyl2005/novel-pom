@@ -1,4 +1,4 @@
-package com.github.novel.common.novel.parse;
+package com.github.novel.collector.parse;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -12,7 +12,7 @@ import org.htmlcleaner.XPatherException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.github.novel.common.HttpClientUtils;
-import com.github.novel.common.novel.entity.NovelDO;
+import com.github.novel.entity.NovelDO;
 import com.github.novel.common.novel.model.NovelConfig;
 import com.github.novel.common.DateUtils;
 import com.github.biz.parse.HtmlCleanerUtils;

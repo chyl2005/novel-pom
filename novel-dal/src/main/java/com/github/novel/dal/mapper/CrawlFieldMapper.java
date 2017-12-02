@@ -2,7 +2,7 @@ package com.github.novel.dal.mapper;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import com.github.novel.common.novel.entity.crawl.CrawlFieldDO;
+import com.github.novel.entity.crawl.CrawlFieldDO;
 
 /**
  * @author:chyl2005

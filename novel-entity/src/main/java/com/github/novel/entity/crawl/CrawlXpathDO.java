@@ -1,4 +1,4 @@
-package com.github.novel.common.novel.entity.crawl;
+package com.github.novel.entity.crawl;
 
 import lombok.Data;
 
@@ -21,7 +21,7 @@ public class CrawlXpathDO {
      */
     private Integer fieldId;
     /**
-     * @see com.github.novel.entity.constant.XPathTypeEnum
+     *
      */
     private Integer xpathType;
     private String attribute;

@@ -1,4 +1,4 @@
-package com.github.novel.common.novel.entity.crawl;
+package com.github.novel.entity.crawl;
 
 import lombok.Data;
 

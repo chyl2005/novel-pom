@@ -1,7 +1,7 @@
 /**
  * @Description:
  */
-package com.github.novel.common.novel.entity;
+package com.github.novel.entity;
 
 import lombok.Data;
 

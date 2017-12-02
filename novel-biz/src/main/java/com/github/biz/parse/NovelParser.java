@@ -14,7 +14,7 @@ import com.github.novel.common.HttpClientUtils;
 import com.github.novel.common.JsonUtils;
 import com.github.novel.common.UrlUtils;
 import com.github.novel.common.novel.model.CrawlPageModel;
-import com.github.novel.common.novel.entity.NovelDO;
+import com.github.novel.entity.NovelDO;
 import com.github.novel.common.novel.model.XPathModel;
 
 /**

@@ -1,4 +1,4 @@
-package com.github.novel.common.novel.parse;
+package com.github.novel.collector.parse;
 
 import java.io.File;
 import java.io.FileInputStream;
