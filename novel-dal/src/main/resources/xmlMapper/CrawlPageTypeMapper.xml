@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.novel.dal.mapper.CrawlPageTypeMapper">
+    <resultMap id="resultMap" type="com.github.novel.common.novel.entity.crawl.CrawlPageTypeDO">
+
+        <id column="id" property="id"/>
+        <result column="site_type" property="siteType"/>
+        <result column="desc" property="desc"/>
+        <result column="gmt_created" property="gmtCreated"/>
+        <result column="gmt_modified" property="gmtModified"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <sql id="generalColumns">
+        id,
+        site_type,
+        `desc`,
+        gmt_created ,
+        gmt_modified,
+        is_del
+
+    </sql>
+
+    <insert id="insertOrUpdate" useGeneratedKeys="true" keyProperty="id">
+        insert into craw_page_type (<include refid="generalColumns"/>)
+
+        values (#{id},
+        #{siteType},
+        #{desc},
+        now(),
+        now(),
+        0)
+        on duplicate key update
+        <trim suffixOverrides=",">
+            site_type = VALUES(site_type),
+            `desc` = VALUES(`desc`),
+            is_del =0,
+            gmt_modified=now()
+        </trim>
+    </insert>
+
+
+    <insert id="batchInsertOrUpdate" parameterType="list">
+        insert into craw_page_type (<include refid="generalColumns"/>)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{id},
+            #{siteType},
+            #{desc},
+            now(),
+            now(),
+            0)
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        site_type = VALUES(site_type),
+        `desc` = VALUES(`desc`),
+        is_del =0,
+        gmt_modified=now()
+    </insert>
+
+
+    <select id="selectByParam" resultMap="resultMap">
+        select
+        <include refid="generalColumns"/>
+        from craw_page_type
+        where is_del=0
+        <if test="ids!=null">
+            and `id` in
+            <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+
+    </select>
+
+
+    <select id="selectByCount" resultType="int">
+        select
+        count(*) from craw_page_type
+        where is_del=0
+        <if test="ids!=null">
+            and `id` in
+            <foreach item="item" index="index" collection="ids" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+
+    <update id="deleteById">
+        update craw_page_type
+        set is_del = 1, gmt_modified=now()
+        where id = #{id}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,55 @@
+<configuration status="info">
+
+    <Properties>
+        <Property name="log_path">/opt/logs/mobile/novel-api</Property>
+    </Properties>
+
+
+    <!--先定义所有的appender-->
+    <appenders>
+        <!--这个输出控制台的配置-->
+        <Console name="Console" target="SYSTEM_OUT">
+            <!--控制台只输出level及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+            <!--这个都知道是输出日志的格式-->
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+        </Console>
+
+
+        <RollingRandomAccessFile name="errorlog"
+                                 immediateFlush="true" fileName="${log_path}/error.log"
+                                 filePattern="${log_path}/error.log.%d{yyyy-MM-dd}">
+            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout>
+                <pattern>%-5p %d{yyyy-MM-dd HH:mm:ss} %c (%t:%l) %m%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingRandomAccessFile>
+
+        <RollingRandomAccessFile name="infolog"
+                                 immediateFlush="true" fileName="${log_path}/info.log"
+                                 filePattern="${log_path}/info.log.%d{yyyy-MM-dd}">
+            <PatternLayout>
+                <pattern>%-5p %d{yyyy-MM-dd HH:mm:ss} %c (%t:%l) %m%xEx{filters(${filters})}%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="20" />
+        </RollingRandomAccessFile>
+
+    </appenders>
+    <!--然后定义logger，只有定义了logger并引入的appender，appender才会生效-->
+    <loggers>
+        <!--建立一个默认的root的logger-->
+        <root includeLocation="true" level="info">
+            <appender-ref ref="errorlog"/>
+            <appender-ref ref="infolog"/>
+            <appender-ref ref="Console"/>
+        </root>
+
+    </loggers>
+</configuration>
