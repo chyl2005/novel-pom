@@ -1,7 +1,7 @@
 package com.github.novel.common.constant;
 
 /**
- * @author:chenyanlong@meituan.com
+ * @author:chyl2005
  * @date:17/12/3
  * @time:15:11
  * @desc:书等级

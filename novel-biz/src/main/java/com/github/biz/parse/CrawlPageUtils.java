@@ -21,7 +21,7 @@ import com.github.novel.common.novel.model.XPathFilterModel;
 import com.github.novel.common.novel.model.XPathModel;
 
 /**
- * @author:chenyanlong@meituan.com
+ * @author:chyl2005
  * @date:17/12/3
  * @time:16:23
  * @desc:描述该类的作用

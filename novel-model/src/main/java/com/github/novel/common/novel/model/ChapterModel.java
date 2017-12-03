@@ -5,7 +5,7 @@ import lombok.Data;
 import com.github.novel.common.constant.DeleteStatusEnum;
 
 /**
- * @author:chenyanlong@meituan.com
+ * @author:chyl2005
  * @date:17/12/3
  * @time:17:15
  * @desc:章节信息

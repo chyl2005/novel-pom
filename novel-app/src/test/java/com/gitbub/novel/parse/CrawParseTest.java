@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.github.biz.parse.Parser;
 
 /**
- * @author:chenyanlong@meituan.com
+ * @author:chyl2005
  * @date:17/12/2
  * @time:16:52
  * @desc:描述该类的作用
