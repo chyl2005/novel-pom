@@ -148,22 +148,7 @@ public class HtmlCleanerUtils {
         return result;
     }
 
-    /**
-     * 获取正则内容
-     *
-     * @param content
-     * @param pattern
-     * @param groupNo
-     * @return
-     * @throws Exception
-     */
-    public static String getInfoByRegex(String content, Pattern pattern, int groupNo) throws Exception {
-        Matcher matcher = pattern.matcher(content);
-        if (matcher.find()) {
-            return matcher.group(groupNo);
-        }
-        return "";
-    }
+
 
     /**
      * !!!分割 0:path,1:type,2:filter,
@@ -211,14 +196,37 @@ public class HtmlCleanerUtils {
 
     }
 
-    public static Pattern getPattern(String item) {
-        String p = null;
-        try {
-            p = new String(item.getBytes("UTF-8"), "UTF-8");
-        } catch (Exception e) {
-            LOGGER.error("getPattern   ", e);
+    public static Pattern getPattern(String pattern) {
+        return Pattern.compile(pattern, Pattern.DOTALL);
+    }
+
+    /**
+     * 获取正则内容
+     *
+     * @param content
+     * @param pattern
+     * @return
+     * @throws Exception
+     */
+    public static String getInfoByRegex(String content, String pattern) {
+        return getInfoByRegex(content,getPattern(pattern),1);
+    }
+
+    /**
+     * 获取正则内容
+     *
+     * @param content
+     * @param pattern
+     * @param groupNo
+     * @return
+     * @throws Exception
+     */
+    public static String getInfoByRegex(String content, Pattern pattern, int groupNo)  {
+        Matcher matcher = pattern.matcher(content);
+        if (matcher.find()) {
+            return matcher.group(groupNo);
         }
-        return Pattern.compile(p, Pattern.DOTALL);
+        return "";
     }
 
 }

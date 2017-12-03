@@ -11,6 +11,8 @@
        xmlns:tx="http://www.springframework.org/schema/tx">
 
 
+
+
     <context:property-placeholder location="classpath:database.properties"/>
 
     <!-- 【druid-慢SQL记录】  -->
@@ -38,7 +40,7 @@
     <!-- 数据组提供数据的数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <property name="name" value="virgo"/>
-        <property name="driverClassName" value="${mysql.classname}"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <!-- 连接数据库所用的URL -->
         <property name="url" value="${mysql.url}"/>
         <!-- 连接数据库的用户名 -->

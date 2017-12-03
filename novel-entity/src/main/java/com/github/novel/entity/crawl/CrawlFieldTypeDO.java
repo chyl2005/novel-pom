@@ -11,11 +11,10 @@ import java.util.Date;
  * @desc:抓取字段管理
  */
 @Data
-public class CrawlFieldDO {
+public class CrawlFieldTypeDO {
 
     private Integer id;
-    private Integer fieldTypeId;
-    private String fieldName;
+    private String javaType;
     private String desc;
     private Date gmtModified;
     private Date gmtCreated;

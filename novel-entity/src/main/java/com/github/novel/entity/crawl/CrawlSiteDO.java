@@ -29,7 +29,7 @@ public class CrawlSiteDO {
     /**
      * 网站主页
      */
-    private Integer url;
+    private String url;
     private Date gmtModified;
     private Date gmtCreated;
     private Integer isDel;

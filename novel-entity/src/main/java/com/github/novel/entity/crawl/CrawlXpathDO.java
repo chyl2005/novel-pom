@@ -25,6 +25,7 @@ public class CrawlXpathDO {
      */
     private Integer xpathType;
     private String attribute;
+    private String dateFormat;
     private Date gmtModified;
     private Date gmtCreated;
     private Integer isDel;

@@ -15,7 +15,7 @@
         <setting name="callSettersOnNulls" value="true"/>
     </settings>
     <typeHandlers>
-        <typeHandler handler="com.github.novel.dal.typehandler.GenericJsonTypeHandler"/>
+        <!--<typeHandler handler="com.github.novel.dal.typehandler.GenericJsonTypeHandler"/>-->
     </typeHandlers>
 
 

@@ -9,6 +9,8 @@
         <result column="field_id" property="fieldId"/>
         <result column="xpath_type" property="xpathType"/>
         <result column="attribute" property="attribute"/>
+        <result column="date_format" property="dateFormat"/>
+
         <result column="gmt_created" property="gmtCreated"/>
         <result column="gmt_modified" property="gmtModified"/>
         <result column="is_del" property="isDel"/>
@@ -21,6 +23,7 @@
         field_id ,
         xpath_type,
         attribute,
+        date_format,
         gmt_created ,
         gmt_modified,
         is_del
@@ -28,7 +31,7 @@
     </sql>
 
     <insert id="insertOrUpdate" useGeneratedKeys="true" keyProperty="id">
-        insert into craw_xpath (<include refid="generalColumns"/>)
+        insert into crawl_xpath (<include refid="generalColumns"/>)
 
         values (#{id},
         #{pageId},
@@ -36,6 +39,7 @@
         #{fieldId},
         #{xpathType},
         #{attribute},
+        #{dateFormat},
         now(),
         now(),
         0)
@@ -46,6 +50,7 @@
             field_id = VALUES(field_id),
             xpath_type = VALUES(xpath_type),
             attribute = VALUES(attribute),
+            date_format=VALUES(date_format),
             is_del =0,
             gmt_modified=now()
         </trim>
@@ -53,7 +58,7 @@
 
 
     <insert id="batchInsertOrUpdate" parameterType="list">
-        insert into craw_xpath (<include refid="generalColumns"/>)
+        insert into crawl_xpath (<include refid="generalColumns"/>)
         values
         <foreach collection="list" item="item" separator=",">
             (#{id},
@@ -62,6 +67,7 @@
             #{fieldId},
             #{xpathType},
             #{attribute},
+            #{dateFormat},
             now(),
             now(),
             0)
@@ -72,6 +78,7 @@
         field_id = VALUES(field_id),
         xpath_type = VALUES(xpath_type),
         attribute = VALUES(attribute),
+        date_format=VALUES(date_format),
         is_del =0,
         gmt_modified=now()
     </insert>
@@ -80,7 +87,7 @@
     <select id="selectByPageIds" resultMap="resultMap">
         select
         <include refid="generalColumns"/>
-        from craw_xpath
+        from crawl_xpath
         where is_del=0
 
         <if test="pageIds!=null">
@@ -95,7 +102,7 @@
 
     <select id="selectByCount" resultType="int">
         select
-        count(*) from craw_xpath
+        count(*) from crawl_xpath
         where is_del=0
 
         <if test="pageIds!=null">
@@ -110,7 +117,7 @@
 
 
     <update id="deleteById">
-        update craw_xpath
+        update crawl_xpath
         set is_del = 1, gmt_modified=now()
         where id = #{id}
     </update>

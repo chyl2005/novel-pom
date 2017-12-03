@@ -8,15 +8,6 @@ import java.nio.charset.Charset;
 import java.util.Map;
 
 
-/** 
- *   <B>说       明</B>:System工具类 
- *
- * @author  作  者  名：chenjinlong<br/>
- *		   E-mail ：chenjinlong@vrvmail.com.cn
- *
- * @version 版   本  号：V1.0<br/>
- *          创建时间：2013年9月25日 下午4:06:15 
- */
 public class SystemUtils {
 	
 	/**

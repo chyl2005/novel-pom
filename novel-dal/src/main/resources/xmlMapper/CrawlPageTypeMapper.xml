@@ -22,7 +22,7 @@
     </sql>
 
     <insert id="insertOrUpdate" useGeneratedKeys="true" keyProperty="id">
-        insert into craw_page_type (<include refid="generalColumns"/>)
+        insert into crawl_page_type (<include refid="generalColumns"/>)
 
         values (#{id},
         #{siteType},
@@ -41,7 +41,7 @@
 
 
     <insert id="batchInsertOrUpdate" parameterType="list">
-        insert into craw_page_type (<include refid="generalColumns"/>)
+        insert into crawl_page_type (<include refid="generalColumns"/>)
         values
         <foreach collection="list" item="item" separator=",">
             (#{id},
@@ -62,7 +62,7 @@
     <select id="selectByParam" resultMap="resultMap">
         select
         <include refid="generalColumns"/>
-        from craw_page_type
+        from crawl_page_type
         where is_del=0
         <if test="ids!=null">
             and `id` in
@@ -76,7 +76,7 @@
 
     <select id="selectByCount" resultType="int">
         select
-        count(*) from craw_page_type
+        count(*) from crawl_page_type
         where is_del=0
         <if test="ids!=null">
             and `id` in
@@ -88,7 +88,7 @@
 
 
     <update id="deleteById">
-        update craw_page_type
+        update crawl_page_type
         set is_del = 1, gmt_modified=now()
         where id = #{id}
     </update>

@@ -6,14 +6,20 @@ package com.github.novel.entity;
 import lombok.Data;
 
 import java.util.Date;
+import com.github.novel.common.constant.NovelCrawStatusEnum;
 
 @Data
 public class NovelDO {
 
+    private Integer id;
+    /**
+     * bookUrl md5
+     */
+    private String bookId;
     /**
      * 网络地址
      */
-    private String url;
+    private String bookUrl;
     /**
      * 小说名字
      */
@@ -23,9 +29,23 @@ public class NovelDO {
      */
     private String author;
     /**
-     * 小说状态，0连载 1完成
+     * 章节列表页url
      */
-    private Integer state;
+    private String chapterListUrl;
+    /**
+     * 小说状态，0连载 1完成
+     *
+     * @NovelStatusEnum
+     */
+    private Integer status;
+
+    /**
+     * 内容即章节
+     * 0更新完成，1更新部分，2全部更新(重新抓取全部章节)
+     *
+     * @see NovelCrawStatusEnum
+     */
+    private Integer crawStatus;
     /**
      * 点击量
      */
@@ -45,7 +65,7 @@ public class NovelDO {
     /**
      * 小说的分类，玄幻魔法 、古代穿越
      */
-    private String type;
+    private String bookType;
     /**
      * 文学分类 传统文学、 网络小说
      */
@@ -62,14 +82,11 @@ public class NovelDO {
      *
      */
     private String coverPath;
-    /**
-     * 章节列表页url
-     */
-    private String chapterListUrl;
+
     /**
      * 小说更新时间
      */
-    private Date updateDate;
+    private Date updateTime;
 
     private Date gmtCreated;
     private Date gmtModified;

@@ -28,6 +28,8 @@ public class CrawlService {
     @Autowired
     private CrawlFieldMapper crawlFieldMapper;
     @Autowired
+    private CrawlFieldTypeMapper crawlFieldTypeMapper;
+    @Autowired
     private CrawlFilterMapper crawlFilterMapper;
     @Autowired
     private CrawlPageMapper crawlPageMapper;
@@ -54,6 +56,8 @@ public class CrawlService {
         List<Integer> xpathIds = crawlXpathDOs.stream().map(xpath -> xpath.getId()).collect(Collectors.toList());
         List<Integer> fieldIds = crawlXpathDOs.stream().map(xpath -> xpath.getFieldId()).collect(Collectors.toList());
         List<CrawlFieldDO> fields = crawlFieldMapper.selectByParam(fieldIds);
+        List<CrawlFieldTypeDO> crawlFieldTypeDOs = crawlFieldTypeMapper.selectAll();
+        Map<Integer, CrawlFieldTypeDO> fieldTypeMap = crawlFieldTypeDOs.stream().collect(Collectors.toMap(field -> field.getId(), field -> field));
         Map<Integer, CrawlFieldDO> fieldMap = fields.stream().collect(Collectors.toMap(field -> field.getId(), field -> field));
         List<CrawlFilterDO> crawFilters = crawlFilterMapper.selectByParam(xpathIds);
         //xpathId->CrawlFilterDO
@@ -68,7 +72,7 @@ public class CrawlService {
             crawlPageModel.setCrawUrl(crawlPageDO.getUrl());
             crawlPageModel.setPageTypeId(crawlPageDO.getPageTypeId());
             List<CrawlXpathDO> xpathDOs = xpathMap.get(crawlPageDO.getId());
-            List<XPathModel> xPathModels = getXPathModels(xpathDOs, fieldMap, filterMap);
+            List<XPathModel> xPathModels = getXPathModels(xpathDOs, fieldMap, filterMap,fieldTypeMap);
             crawlPageModel.setXPathModels(xPathModels);
             crawlPageModels.add(crawlPageModel);
         }
@@ -81,7 +85,10 @@ public class CrawlService {
      * @param filterMap xpathId->CrawlFilterDO
      * @return
      */
-    private List<XPathModel> getXPathModels(List<CrawlXpathDO> xpathDOs, Map<Integer, CrawlFieldDO> fieldMap, Map<Integer, List<CrawlFilterDO>> filterMap) {
+    private List<XPathModel> getXPathModels(List<CrawlXpathDO> xpathDOs,
+                                            Map<Integer, CrawlFieldDO> fieldMap,
+                                            Map<Integer, List<CrawlFilterDO>> filterMap,
+                                            Map<Integer, CrawlFieldTypeDO> fieldTypeMap) {
         if (CollectionUtils.isEmpty(xpathDOs)) {
             return Collections.emptyList();
         }
@@ -90,10 +97,12 @@ public class CrawlService {
             XPathModel xPathModel = new XPathModel();
             xPathModel.setXpath(xpathDO.getXpath());
             xPathModel.setAttribute(xpathDO.getAttribute());
+            xPathModel.setDateFromat(xpathDO.getDateFormat());
             CrawlFieldDO crawlFieldDO = fieldMap.get(xpathDO.getFieldId());
-            if (crawlFieldDO != null) {
-                xPathModel.setFieldName(crawlFieldDO.getFieldName());
-            }
+            xPathModel.setFieldName(crawlFieldDO.getFieldName());
+            CrawlFieldTypeDO fieldTypeDO = fieldTypeMap.get(crawlFieldDO.getFieldTypeId());
+            xPathModel.setJavaType(fieldTypeDO.getJavaType());
+
             xPathModel.setXPathType(XPathTypeEnum.getXPathType(xpathDO.getXpathType()));
             List<XPathFilterModel> xPathFilters = getXPathFilters(filterMap.get(xpathDO.getId()));
             xPathModel.setFilter(xPathFilters);

@@ -6,18 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 
-/** 
- *   <B>说       明</B>:基于MD5算法的工具类
- *   <p>更多消息摘要算法支持参见 {@link MessageDigestUtils}
- *   
- *   @see MessageDigestUtils
- *
- * @author  作  者  名：chenjinlong<br/>
- *		   E-mail： chenjinlong@163.com
- *
- * @version 版   本  号：V1.0<br/>
- *          创建时间：2013-9-17 下午02:46:47 
- */
+
 public class MD5Utils {
 
 	/**

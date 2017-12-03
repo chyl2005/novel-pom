@@ -57,4 +57,12 @@ public class UrlUtils {
         }
         return rtn.replace("&amp;", "&");
     }
+
+    public static Boolean isRelatePath(String url) throws Exception {
+        if (url.startsWith("http") || url.startsWith("/")
+                || url.startsWith("www.")) {
+            return false;
+        }
+        return true;
+    }
 }

@@ -17,7 +17,7 @@
         <!-- 工具类 -->
         <dependency>
             <groupId>com.github</groupId>
-            <artifactId>novel-util</artifactId>
+            <artifactId>novel-common</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -119,6 +119,24 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>aopalliance</groupId>
+            <artifactId>aopalliance</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
         </dependency>
 
     </dependencies>

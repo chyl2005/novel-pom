@@ -133,7 +133,7 @@ public class Quicksort {
 	 * 
 	 * @param arr
 	 *            the array to be sorted<br />
-	 * @param start
+	 * @param left
 	 *            the left position. <br />
 	 * @param right
 	 *            the right position. <br />
@@ -158,7 +158,7 @@ public class Quicksort {
 	 * 
 	 * @param arr
 	 *            the array to be sorted implements Comparable<br />
-	 * @param start
+	 * @param left
 	 *            the left position. <br />
 	 * @param right
 	 *            the right position. <br />
@@ -182,9 +182,9 @@ public class Quicksort {
 	/**
 	 * the partition of an array
 	 * 
-	 * @param arr
+	 * @param array
 	 *            the array to be sorted implements Comparator<br />
-	 * @param start
+	 * @param left
 	 *            the left position. <br />
 	 * @param right
 	 *            the right position. <br />
@@ -236,8 +236,7 @@ public class Quicksort {
 	/**
 	 * method to swap references in an list.<br />
 	 * 
-	 * @param <T>
-	 * 
+	 *
 	 * @param arr
 	 *            an array of Objects. <br />
 	 * @param idx1
@@ -258,7 +257,7 @@ public class Quicksort {
 	 * 
 	 * @param <T>
 	 * 
-	 * @param arr
+	 * @param list
 	 *            an array of Objects. <br />
 	 * @param idx1
 	 *            the index of the first element. <br />

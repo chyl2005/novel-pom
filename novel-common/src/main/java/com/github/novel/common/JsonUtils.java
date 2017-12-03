@@ -1,6 +1,7 @@
 package com.github.novel.common;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -51,14 +52,16 @@ public class JsonUtils {
         }
     }
 
+    public static <T> List<T> json2List(String json, Class<T> elementClasses) {
+        return json2List(json, List.class, elementClasses);
+    }
+
     /**
-     * 获取泛型的Collection Type   如 List<User> list = readJson(json, List.class, User.class);
-     *
      * @param json            json字符串
      * @param collectionClass 泛型的Collection
      * @param elementClasses  元素类型
      */
-    public static <T> T json2List(String json, Class<?> collectionClass, Class<?>... elementClasses) {
+    public static <T> List<T> json2List(String json, Class<? extends List> collectionClass, Class<T> elementClasses) {
         JavaType javaType = objectMapper.getTypeFactory().constructParametricType(collectionClass, elementClasses);
         try {
             return objectMapper.readValue(json, javaType);
@@ -70,13 +73,27 @@ public class JsonUtils {
 
     /**
      * @param json
+     * @param keyClass
+     * @param valueClass
+     * @param <K>
+     * @param <V>
+     * @return
+     */
+    public static <K, V> Map<K, V> json2Map(String json, Class<K> keyClass, Class<V> valueClass) {
+        return json2Map(json, Map.class, keyClass, valueClass);
+
+    }
+
+    /**
+     * @param json
      * @param mapClass
      * @param keyClass
      * @param valueClass
-     * @param <T>
+     * @param <K>
+     * @param <V>
      * @return
      */
-    public static <T> T json2Map(String json, Class<? extends Map> mapClass, Class<?> keyClass, Class<?> valueClass) {
+    public static <K, V> Map<K, V> json2Map(String json, Class<? extends Map> mapClass, Class<K> keyClass, Class<V> valueClass) {
         JavaType javaType = objectMapper.getTypeFactory().constructMapType(mapClass, keyClass, valueClass);
         try {
             return objectMapper.readValue(json, javaType);

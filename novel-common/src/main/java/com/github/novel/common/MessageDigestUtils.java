@@ -5,15 +5,7 @@ import java.io.InputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/** 
- *   <B>说       明</B>:消息摘要工具类
- *
- * @author  作  者  名：chenjinlong<br/>
- *		   E-mail ：chenjinlong@163.com
- 
- * @version 版   本  号：V1.0<br/>
- *          创建时间：2013-9-17 上午11:09:09 
- */
+
 public class MessageDigestUtils {
 	
 	/**

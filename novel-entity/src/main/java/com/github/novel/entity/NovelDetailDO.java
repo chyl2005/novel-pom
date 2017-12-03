@@ -13,24 +13,52 @@ import java.util.Date;
 @Data
 public class NovelDetailDO {
 
+    private Integer id;
     /**
-     * 章节列表页url
+     * bookUrl md5
      */
-    private String chapterLink;
+    private String bookId;
     /**
-     * 来源网址
+     * 网络地址
+     */
+    private String bookUrl;
+    /**
+     * 小说名字
+     */
+    private String bookName;
+    /**
+     * 小说作者
+     */
+    private String author;
+    /**
+     * 最新章节
+     */
+    private String chapterTitle;
+
+    /**
+     * 最新章节链接
+     */
+    private String chapterUrl;
+
+    /**
+     * 来源网站
      */
     private String sourceSite;
+
     /**
-     * 新入库0 抓去过1
+     * 0更新，1详情页已抓取
      */
-    private String status;
+    private Integer status;
+    /**
+     * 小说更新时间
+     */
+    private Date updateTime;
 
     private Date gmtCreated;
     private Date gmtModified;
     /**
      * 是否删除 0 未删除 1已删除
      */
-    private Date isDel;
+    private Integer isDel;
 
 }

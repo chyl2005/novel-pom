@@ -16,7 +16,7 @@ public class CrawlPageTypeDO {
     private Integer id;
     /**
      * 网站类型
-     * @see com.github.novel.entity.constant.CrawlSiteTypeEnum
+     * @see
      */
     private Integer siteType;
     /**

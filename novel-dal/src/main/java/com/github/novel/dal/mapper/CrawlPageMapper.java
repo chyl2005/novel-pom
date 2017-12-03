@@ -15,11 +15,11 @@ public interface CrawlPageMapper {
 
     void batchInsertOrUpdate(List<CrawlPageDO> crawPageDOs);
 
-    List<CrawlPageDO> selectByParam(@Param("siteId") Integer siteId, @Param("pageType") Integer pageType);
+    List<CrawlPageDO> selectByParam(@Param("siteId") Integer siteId, @Param("pageTypeId") Integer pageTypeId);
 
-    Integer selectByCount(@Param("siteId") Integer siteId, @Param("pageType") Integer pageType);
+    Integer selectByCount(@Param("siteId") Integer siteId, @Param("pageTypeId") Integer pageTypeId);
 
-    void delete(@Param("siteId") Integer siteId, @Param("pageType") Integer pageType);
+    void delete(@Param("siteId") Integer siteId, @Param("pageTypeId") Integer pageTypeId);
 
     void deleteById(@Param("id") Integer id);
 }

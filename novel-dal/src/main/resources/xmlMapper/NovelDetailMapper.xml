@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.github.novel.dal.mapper.NovelDetailMapper">
+    <resultMap id="resultMap" type="com.github.novel.entity.NovelDetailDO">
+
+        <id column="id" property="id"/>
+        <result column="book_id" property="bookId"/>
+        <result column="book_url" property="bookUrl"/>
+        <result column="book_name" property="bookName"/>
+        <result column="author" property="author"/>
+        <result column="chapter_title" property="chapterTitle"/>
+        <result column="chapter_url" property="chapterUrl"/>
+        <result column="source_site" property="sourceSite"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="status" property="status"/>
+
+        <result column="gmt_created" property="gmtCreated"/>
+        <result column="gmt_modified" property="gmtModified"/>
+        <result column="is_del" property="isDel"/>
+    </resultMap>
+
+    <sql id="generalColumns">
+        id,
+        book_id,
+        book_url,
+        book_name ,
+        author,
+        chapter_title,
+        source_site ,
+        update_time,
+        status,
+        gmt_created ,
+        gmt_modified,
+        is_del
+
+    </sql>
+
+    <insert id="insertOrUpdate" useGeneratedKeys="true" keyProperty="id">
+        insert into novel_detail (<include refid="generalColumns"/>)
+
+        values (#{id},
+        #{bookId},
+        #{bookUrl},
+        #{bookName},
+        #{author},
+        #{chapterTitle},
+        #{chapterUrl},
+        #{sourceSite},
+        #{updateTime},
+        #{status},
+        now(),
+        now(),
+        0)
+        on duplicate key update
+        <trim suffixOverrides=",">
+            site_id = VALUES(site_id),
+            book_id= VALUES(book_id),
+            book_url= VALUES(book_url),
+            book_name = VALUES(book_name),
+            author= VALUES(author),
+            chapter_title= VALUES(chapter_title),
+            source_site = VALUES(source_site),
+            update_time= VALUES(update_time),
+            status= VALUES(status),
+            gmt_modified=now()
+        </trim>
+    </insert>
+
+
+    <insert id="batchInsertOrUpdate" parameterType="list">
+        insert into novel_detail (<include refid="generalColumns"/>)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{id},
+            #{bookId},
+            #{bookUrl},
+            #{bookName},
+            #{author},
+            #{chapterTitle},
+            #{chapterUrl},
+            #{sourceSite},
+            #{updateTime},
+            #{status},
+            now(),
+            now(),
+            0)
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        site_id = VALUES(site_id),
+        book_id= VALUES(book_id),
+        book_url= VALUES(book_url),
+        book_name = VALUES(book_name),
+        author= VALUES(author),
+        chapter_title= VALUES(chapter_title),
+        source_site = VALUES(source_site),
+        update_time= VALUES(update_time),
+        status= VALUES(status),
+        gmt_modified=now()
+    </insert>
+
+
+    <select id="selectByParam" resultMap="resultMap">
+        select
+        <include refid="generalColumns"/>
+        from novel_detail
+        where is_del=0
+        <if test="sourceSite!=null">
+            and source_site=#{sourceSite}
+        </if>
+        <if test="status!=null">
+            and status = #{status}
+        </if>
+    </select>
+
+
+    <select id="selectByCount" resultType="int">
+        select
+        count(*) from novel_detail
+        where is_del=0
+        <if test="sourceSite!=null">
+            and source_site=#{sourceSite}
+        </if>
+        <if test="status!=null">
+            and status = #{status}
+        </if>
+    </select>
+
+
+
+
+    <update id="deleteByBookId">
+        update novel_detail
+        set is_del = 1, gmt_modified=now()
+        where book_id = #{bookId}
+    </update>
+
+
+</mapper>

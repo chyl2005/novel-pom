@@ -26,7 +26,7 @@
     </sql>
 
     <insert id="insertOrUpdate" useGeneratedKeys="true" keyProperty="id">
-        insert into craw_site (<include refid="generalColumns"/>)
+        insert into crawl_site (<include refid="generalColumns"/>)
 
         values (#{id},
         #{sourceSite},
@@ -51,7 +51,7 @@
 
 
     <insert id="batchInsertOrUpdate" parameterType="list">
-        insert into craw_site (<include refid="generalColumns"/>)
+        insert into crawl_site (<include refid="generalColumns"/>)
         values
         <foreach collection="list" item="item" separator=",">
             (#{id},
@@ -78,7 +78,7 @@
     <select id="selectByParam" resultMap="resultMap">
         select
         <include refid="generalColumns"/>
-        from craw_site
+        from crawl_site
         where is_del=0
         <if test="ids!=null">
             and `id` in
@@ -92,7 +92,7 @@
     <select id="getCrawlSite" resultMap="resultMap">
         select
         <include refid="generalColumns"/>
-        from craw_site
+        from crawl_site
         where is_del=0
         AND source_site=#{sourceSite}
     </select>
@@ -100,7 +100,7 @@
 
     <select id="selectByCount" resultType="int">
         select
-        count(*) from craw_site
+        count(*) from crawl_site
         where is_del=0
         <if test="ids!=null">
             and `id` in
@@ -112,7 +112,7 @@
 
 
     <update id="deleteById">
-        update craw_site
+        update crawl_site
         set is_del = 1, gmt_modified=now()
         where id = #{id}
     </update>

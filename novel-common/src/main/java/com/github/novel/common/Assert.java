@@ -3,19 +3,7 @@ package com.github.novel.common;
 import java.util.Collection;
 import java.util.Map;
 
-/** 
- *   <B>说       明</B>: 断言工具
- * <p>此类用于工具类或其他类中的参数验证等。
- *   
- * <p>注：此类只检验参数合法性，并不保证参数合理性，具体的业务逻辑性验证请在具体项目
- * 中添加相应逻辑验证工具类。 
- *
- * @author  作  者  名：WuHong<br/>
- *		   E-mail ：wuhong@vrvmail.com.cn
- 
- * @version 版   本  号：V1.0<br/>
- *          创建时间：2013-6-3 下午02:58:35 
- */
+
 public final class Assert{
 	
 	/**

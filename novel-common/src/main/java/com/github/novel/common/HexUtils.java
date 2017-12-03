@@ -1,15 +1,7 @@
 package com.github.novel.common;
 
 
-/** 
- *   <B>说       明</B>:十六进制工具类
- *
- * @author  作  者  名：chenjinlong<br/>
- *		   E-mail ：chenjinlong@vrvmail.com.cn
- 
- * @version 版   本  号：V1.0<br/>
- *          创建时间：2013-9-17 下午02:09:17 
- */
+
 public class HexUtils {
 
 	/**

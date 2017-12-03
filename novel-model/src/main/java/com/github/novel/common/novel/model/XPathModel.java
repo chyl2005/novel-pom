@@ -19,6 +19,10 @@ public class XPathModel {
      */
     private String fieldName;
     /**
+     * 字段类型
+     */
+    private String javaType;
+    /**
      * xpath
      */
     private String xpath;
@@ -30,6 +34,8 @@ public class XPathModel {
      * XPathTypeEnum.attribute 时使用
      */
     private String attribute;
+
+    private String dateFromat;
     /**
      * 过滤器
      */
